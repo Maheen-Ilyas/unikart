@@ -16,7 +16,30 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: GoogleFonts.outfit().toString(),
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.indigo,
+          seedColor: const Color(0xFF80BCBD),
+        ),
+        navigationBarTheme: const NavigationBarThemeData(
+          height: 80,
+          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+          overlayColor: MaterialStatePropertyAll(
+            Color.fromARGB(128, 81, 154, 147),
+          ),
+          indicatorShape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(30),
+            ),
+          ),
+          labelTextStyle: MaterialStatePropertyAll(
+            TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          iconTheme: MaterialStatePropertyAll(
+            IconThemeData(
+              size: 26,
+            ),
+          ),
         ),
         useMaterial3: true,
       ),
