@@ -90,9 +90,6 @@ class _MainState extends State<Main> {
 
         if (response.statusCode == 200) {
           List<Product> extractedProducts = parseProducts(response.body);
-          if (extractedProducts.length > 30) {
-            extractedProducts = extractedProducts.sublist(0, 30);
-          }
           if (mounted) {
             setState(() {
               products = extractedProducts;
@@ -125,10 +122,9 @@ class _MainState extends State<Main> {
     final document = html_parser.parse(responseBody);
     final elements = document.querySelectorAll('.a-spacing-base');
 
-
     for (var detail in elements) {
-      final String brand =
-          detail.querySelector('span[class="a-size-base-plus"]')?.text ?? '';
+      final brandElement = detail.querySelector('div.a-section h2');
+      final String brand = brandElement?.text ?? '';
       final String name = detail
               .querySelector(
                   'div.a-section.a-spacing-small.puis-padding-left-small.puis-padding-right-small > div.a-section.a-spacing-none.a-spacing-top-small.s-title-instructions-style > h2 > a > span')
@@ -136,10 +132,9 @@ class _MainState extends State<Main> {
           '';
       final String price =
           detail.querySelector('span[class="a-offscreen"]')?.text ?? '';
-      final String image = detail
-              .querySelector('div.s-product-image-container img')
-              ?.attributes['src'] ??
-          '';
+      final imageElement =
+          detail.querySelector('div.s-product-image-container img.s-image');
+      final String image = imageElement?.attributes['src'] ?? '';
 
       Product product = Product(
         brand: brand,

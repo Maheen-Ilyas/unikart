@@ -25,36 +25,36 @@ class _ProductCardState extends State<ProductCard> {
       height: 150,
       child: Card(
         color: Colors.white,
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.8,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 150,
-                width: 130,
-                child: Image.network(
-                  widget.productImage,
-                  fit: BoxFit.cover,
-                ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 150,
+              width: 130,
+              child: Image.network(
+                widget.productImage,
               ),
-              Padding(
-                padding: const EdgeInsets.all(16),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 6),
+              child: Container(
+                padding: const EdgeInsets.only(left: 8, top: 10),
+                width: 200,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       widget.productBrand,
+                      overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.outfit(
-                        fontSize: 28,
+                        fontSize: 22,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     Text(
                       widget.productName,
                       overflow: TextOverflow.ellipsis,
-                      maxLines: 4,
                       style: GoogleFonts.outfit(
                         fontSize: 20,
                         fontWeight: FontWeight.w400,
@@ -63,15 +63,15 @@ class _ProductCardState extends State<ProductCard> {
                     Text(
                       widget.productPrice,
                       style: GoogleFonts.outfit(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
