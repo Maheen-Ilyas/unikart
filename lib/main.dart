@@ -18,24 +18,24 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF80BCBD),
         ),
-        navigationBarTheme: const NavigationBarThemeData(
+        navigationBarTheme: NavigationBarThemeData(
           height: 80,
           labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-          overlayColor: MaterialStatePropertyAll(
+          overlayColor: const MaterialStatePropertyAll(
             Color.fromARGB(128, 81, 154, 147),
           ),
-          indicatorShape: RoundedRectangleBorder(
+          indicatorShape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(30),
             ),
           ),
           labelTextStyle: MaterialStatePropertyAll(
-            TextStyle(
+            GoogleFonts.outfit(
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
           ),
-          iconTheme: MaterialStatePropertyAll(
+          iconTheme: const MaterialStatePropertyAll(
             IconThemeData(
               size: 26,
             ),

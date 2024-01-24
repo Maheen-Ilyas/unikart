@@ -14,7 +14,7 @@ class _NavBarState extends State<NavBar> {
   int index = 0;
   static final List<Widget> destinations = <Widget>[
     const Main(),
-   const Profile(),
+    const Profile(),
   ];
   void onTapped(int newIndex) {
     setState(
@@ -28,24 +28,26 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: destinations[index],
-      bottomNavigationBar: Builder(builder: (context) {
-        return NavigationBar(
-          selectedIndex: index,
-          onDestinationSelected: onTapped,
-          destinations: const [
-            NavigationDestination(
-              icon: Icon(FluentIcons.home_24_regular),
-              selectedIcon: Icon(FluentIcons.home_24_filled),
-              label: 'Home',
-            ),
-            NavigationDestination(
-              icon: Icon(FluentIcons.person_24_regular),
-              selectedIcon: Icon(FluentIcons.person_24_filled),
-              label: 'Profile',
-            ),
-          ],
-        );
-      }),
+      bottomNavigationBar: Builder(
+        builder: (context) {
+          return NavigationBar(
+            selectedIndex: index,
+            onDestinationSelected: onTapped,
+            destinations: const [
+              NavigationDestination(
+                icon: Icon(FluentIcons.home_24_regular),
+                selectedIcon: Icon(FluentIcons.home_24_filled),
+                label: 'Home',
+              ),
+              NavigationDestination(
+                icon: Icon(FluentIcons.person_24_regular),
+                selectedIcon: Icon(FluentIcons.person_24_filled),
+                label: 'Profile',
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

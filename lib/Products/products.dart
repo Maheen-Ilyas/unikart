@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:unikart/Products/class.dart';
+import 'package:unikart/Products/product_card.dart';
 
 class Products extends StatefulWidget {
   final String name;
+  final List<Product> products;
   const Products({
     super.key,
     required this.name,
+    required this.products,
   });
 
   @override
@@ -18,23 +23,44 @@ class _ProductsState extends State<Products> {
       child: Scaffold(
         appBar: AppBar(
           forceMaterialTransparency: true,
-          title: Text(widget.name),
+          title: Image.asset(
+            'assets/logo.png',
+            width: 150,
+          ),
+          centerTitle: true,
         ),
-        body: Container(
-          padding: const EdgeInsets.all(16),
-          child: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Products",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Text(
+                widget.name,
+                style: GoogleFonts.outfit(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 15),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                child: ListView.builder(
+                  itemCount: widget.products.length,
+                  itemBuilder: (context, index) {
+                    final product = widget.products[index];
+                    return ProductCard(
+                      productBrand: product.brand,
+                      productName: product.name,
+                      productPrice: product.price,
+                      productImage: product.image,
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
