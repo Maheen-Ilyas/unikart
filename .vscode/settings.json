@@ -3,5 +3,6 @@
         "fluentui",
         "puis",
         "unikart"
-    ]
+    ],
+    "cmake.sourceDirectory": "C:/DPBH/unikart/linux"
 }

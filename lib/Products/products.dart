@@ -50,11 +50,14 @@ class _ProductsState extends State<Products> {
                   itemCount: widget.products.length,
                   itemBuilder: (context, index) {
                     final product = widget.products[index];
-                    return ProductCard(
-                      productBrand: product.brand,
-                      productName: product.name,
-                      productPrice: product.price,
-                      productImage: product.image,
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: ProductCard(
+                        productBrand: product.brand,
+                        productName: product.name,
+                        productPrice: product.price,
+                        productImage: product.image,
+                      ),
                     );
                   },
                 ),

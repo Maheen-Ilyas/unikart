@@ -6,7 +6,7 @@ class Product {
 
   Product({
     required this.brand,
-    required this.name,
+    required this.name, 
     required this.price,
     required this.image,
   });
