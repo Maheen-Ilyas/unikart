@@ -123,8 +123,8 @@ class _MainState extends State<Main> {
   List<Product> parseProducts(String responseBody) {
     List<Product> productList = [];
     final document = html_parser.parse(responseBody);
-    final elements =
-        document.querySelectorAll('.s-main-slot .s-result-list .s-result-item');
+    final elements = document.querySelectorAll('.a-spacing-base');
+
 
     for (var detail in elements) {
       final String brand =
