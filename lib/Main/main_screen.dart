@@ -14,65 +14,7 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> {
   List<Product> amazonProducts = [];
-  final List<Map<String, String>> amazonCategory = [
-    {
-      'Appliances':
-          'https://www.amazon.in/s?bbn=5122349031&rh=n%3A5122348031%2Cn%3A4951860031&dc&qid=1706030387&rnid=5122349031&ref=lp_5122349031_nr_n_1'
-    },
-    {
-      'Beauty':
-          'https://www.amazon.in/s?k=beauty+and+personal+care&i=beauty&crid=3GV8OUCQ5HDDW&sprefix=%2Cbeauty%2C176&ref=nb_sb_ss_recent_1_0_recent'
-    },
-    {
-      'Boy\'s Clothing':
-          'https://www.amazon.in/s?k=boys+clothing&i=apparel&crid=1QXHKQ0HT1X9R&sprefix=boys+cl%2Capparel%2C187&ref=nb_sb_ss_ts-doa-p_1_7'
-    },
-    {
-      'Electronics':
-          'https://www.amazon.in/s?k=electronics&i=electronics&crid=3UC8JI1RNI83D&sprefix=electroni%2Celectronics%2C200&ref=nb_sb_noss_2'
-    },
-    {
-      'Furniture':
-          'https://www.amazon.in/s?k=furniture&i=furniture&crid=36VRTVECC2VVZ&sprefix=furniture%2Cfurniture%2C189&ref=nb_sb_noss_1'
-    },
-    {
-      'Girl\'s CLothing':
-          'https://www.amazon.in/s?k=girls+clothing&i=apparel&crid=2QD3S1HUXBL0A&sprefix=girls%2Capparel%2C182&ref=nb_sb_ss_ts-doa-p_2_5'
-    },
-    {
-      'Grocery':
-          'https://www.amazon.in/s?k=grocery&i=grocery&crid=389RFA9AXLH3S&sprefix=grocery%2Cgrocery%2C188&ref=nb_sb_noss_1'
-    },
-    {
-      'Health & Personal Care':
-          'https://www.amazon.in/s?k=health+and+personal+care&i=hpc&crid=32SSXWS3FGFSP&sprefix=health+and+%2Chpc%2C189&ref=nb_sb_ss_ts-doa-p_1_11'
-    },
-    {
-      'Home & Kitchen':
-          'https://www.amazon.in/s?k=home+and+kitchen&i=kitchen&crid=29W8TBAZJGF4&sprefix=home+and+kitchen%2Ckitchen%2C184&ref=nb_sb_noss_1'
-    },
-    {
-      'Men\'s Clothing':
-          'https://www.amazon.in/s?k=mens+clothing&i=apparel&crid=3EKEB9B1OH4HL&sprefix=mens+cl%2Capparel%2C180&ref=nb_sb_ss_ts-doa-p_2_7'
-    },
-    {
-      'Pet Supplies':
-          'https://www.amazon.in/s?k=pet+supplies&i=pets&crid=1YLABT1OB5XYQ&sprefix=pet+supplies%2Cpets%2C178&ref=nb_sb_noss_1'
-    },
-    {
-      'Sports':
-          'https://www.amazon.in/s?k=sports&i=sporting&crid=1VHOWZES95USX&sprefix=sports%2Csporting%2C180&ref=nb_sb_noss_1'
-    },
-    {
-      'Watches':
-          'https://www.amazon.in/s?k=watches&i=watches&crid=3DUM7AQLGLD3Y&sprefix=watches%2Cwatches%2C189&ref=nb_sb_noss_1'
-    },
-    {
-      'Women\'s Clothing':
-          'https://www.amazon.in/s?k=women+clothing&i=apparel&crid=NV135L5ZIDGR&sprefix=women+clothing%2Capparel%2C173&ref=nb_sb_noss_1'
-    },
-  ];
-
+  
   @override
   void initState() {
     super.initState();

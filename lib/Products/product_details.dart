@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -39,6 +40,7 @@ class _ProductScreenState extends State<ProductDetail> {
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
                     width: 300,
@@ -76,6 +78,14 @@ class _ProductScreenState extends State<ProductDetail> {
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                           ),
+                        ),
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          FluentIcons.flag_24_filled,
+                          color: Colors.red,
                         ),
                       ),
                       const Spacer(),

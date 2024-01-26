@@ -24,53 +24,6 @@ class BigbasketProducts extends StatefulWidget {
 class _ProductsState extends State<BigbasketProducts> {
   List<Product> jiomartProducts = [];
 
-  final List<Map<String, String>> jiomartCategory = [
-    {
-      'Appliances': 'https://www.jiomart.com/c/electronics/home-appliances/724',
-    },
-    {
-      'Beauty': 'https://www.jiomart.com/c/beauty/5',
-    },
-    {
-      'Boy\'s Clothing': 'https://www.jiomart.com/c/fashion/boys/499',
-    },
-    {
-      'Electronics': 'https://www.jiomart.com/c/electronics/4',
-    },
-    {
-      'Furniture': 'https://www.jiomart.com/c/homeandkitchen/home-decor/8722',
-    },
-    {
-      'Girl\'s CLothing': 'https://www.jiomart.com/c/fashion/girls/563',
-    },
-    {
-      'Grocery': 'https://www.jiomart.com/c/groceries/2',
-    },
-    {
-      'Health & Personal Care':
-          'https://www.jiomart.com/c/groceries/personal-care/91',
-    },
-    {
-      'Home & Kitchen': 'https://www.jiomart.com/c/homeandkitchen/8582',
-    },
-    {
-      'Men\'s Clothing': 'https://www.jiomart.com/c/fashion/men/496',
-    },
-    {
-      'Pet Supplies': 'https://www.jiomart.com/c/groceries/pets/3346',
-    },
-    {
-      'Sports':
-          'https://www.jiomart.com/c/sportstoysluggage/sporting-goods-fitness-equipment/9279',
-    },
-    {
-      'Watches': 'https://www.jiomart.com/search/watches',
-    },
-    {
-      'Women\'s Clothing': 'https://www.jiomart.com/c/fashion/women/493',
-    },
-  ];
-
   Future<List<Product>> fetchJiomartData(String url,
       {int maxRetries = 3}) async {
     int retryCount = 0;

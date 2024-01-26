@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:unikart/navbar.dart';
+import 'package:unikart/Main/main_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const NavBar(),
+      home: const Main(),
     );
   }
 }

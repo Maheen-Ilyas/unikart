@@ -24,52 +24,6 @@ class AmazonProducts extends StatefulWidget {
 class _ProductsState extends State<AmazonProducts> {
   List<Product> bigBasketProducts = [];
 
-  final List<Map<String, String>> bigBasketCategory = [
-    {
-      'Appliances':
-          'https://www.bigbasket.com/pc/kitchen-garden-pets/appliances-electricals/?nc=nb&page=2'
-    },
-    {
-      'Beauty': 'https://www.bigbasket.com/ps/?q=beauty&nc=as',
-    },
-    {
-      'Boy\'s Clothing': 'https://www.bigbasket.com/ps/?q=boys&nc=as',
-    },
-    {
-      'Electronics': 'https://www.bigbasket.com/ps/?q=electricals&nc=as',
-    },
-    {
-      'Furniture': 'https://www.bigbasket.com/ps/?q=furniture&nc=as',
-    },
-    {
-      'Girl\'s CLothing': 'https://www.bigbasket.com/ps/?q=girls&nc=as',
-    },
-    {
-      'Grocery': 'https://www.bigbasket.com/ps/?q=grocery&nc=as',
-    },
-    {
-      'Health & Personal Care': 'https://www.bigbasket.com/ps/?q=health&nc=as',
-    },
-    {
-      'Home & Kitchen': 'https://www.bigbasket.com/ps/?q=kitchen&nc=as',
-    },
-    {
-      'Men\'s Clothing': 'https://www.bigbasket.com/ps/?q=men&nc=as',
-    },
-    {
-      'Pet Supplies': 'https://www.bigbasket.com/ps/?q=pet&nc=as',
-    },
-    {
-      'Sports': 'https://www.bigbasket.com/ps/?q=sports&nc=as',
-    },
-    {
-      'Watches': 'https://www.bigbasket.com/ps/?q=watch&nc=as',
-    },
-    {
-      'Women\'s Clothing': 'https://www.bigbasket.com/ps/?q=women&nc=as',
-    },
-  ];
-
   Future<List<Product>> fetchBigbasketData(String url,
       {int maxRetries = 3}) async {
     int retryCount = 0;
@@ -105,13 +59,12 @@ class _ProductsState extends State<AmazonProducts> {
   List<Product> parseBigbasketProducts(String responseBody) {
     List<Product> productList = [];
     final document = html_parser.parse(responseBody);
-    print(document);
     final elements = document.querySelectorAll(
       '#siteLayout > div.col-span-12.mt-3.mb-8 > div.grid.grid-flow-col.gap-x-6.relative.mt-5.pb-5.border-t.border-dashed.border-silverSurfer-400 > section > section > ul > li > div > div',
     );
 
     for (var detail in elements) {
-      final brandElement = detail.querySelector('h3 > a > span');
+      final brandElement = detail.querySelector('h3 a span');
       final String brand = brandElement?.text ?? '';
       final String name = detail.querySelector('h3 > a > div > h3')?.text ?? '';
       final String price = detail
@@ -121,7 +74,7 @@ class _ProductsState extends State<AmazonProducts> {
               ?.text ??
           '';
       final imageElement = detail.querySelector(
-        'a span img.DeckImage___StyledImage-sc-1mdvxwk-3',
+        'span > img',
       );
       final String image = imageElement?.attributes['src'] ?? '';
 
@@ -158,6 +111,7 @@ class _ProductsState extends State<AmazonProducts> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            
             Padding(
               padding: const EdgeInsets.only(left: 16),
               child: Text(
