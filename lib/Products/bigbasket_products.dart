@@ -80,12 +80,15 @@ class _ProductsState extends State<BigbasketProducts> {
         'div.plp-card-image img',
       );
       final String image = imageElement?.attributes['src'] ?? '';
+      final String href =
+          detail.querySelector(r'#\35 91053951 > a')?.attributes['href'] ?? '';
       Product product = Product(
         brand: brand,
         name: name,
         price: price,
         image: image,
         source: 'Jiomart',
+        href: href,
       );
       productList.add(product);
     }
@@ -133,6 +136,7 @@ class _ProductsState extends State<BigbasketProducts> {
                         productPrice: product.price,
                         productImage: product.image,
                         productSource: product.source,
+                        productLink: product.href,
                       ),
                     );
                   },
@@ -182,16 +186,6 @@ class _ProductsState extends State<BigbasketProducts> {
                   },
                   child: Text(
                     2.toString(),
-                    style: GoogleFonts.outfit(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text(
-                    3.toString(),
                     style: GoogleFonts.outfit(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,

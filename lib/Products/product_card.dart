@@ -8,6 +8,7 @@ class ProductCard extends StatefulWidget {
   final String productPrice;
   final String productImage;
   final String productSource;
+  final String productLink;
   const ProductCard({
     Key? key,
     required this.productBrand,
@@ -15,6 +16,7 @@ class ProductCard extends StatefulWidget {
     required this.productPrice,
     required this.productImage,
     required this.productSource,
+    required this.productLink,
   }) : super(key: key);
 
   @override
@@ -35,6 +37,7 @@ class _ProductCardState extends State<ProductCard> {
               productPrice: widget.productPrice,
               productImage: widget.productImage,
               productSource: widget.productSource,
+              productLink: widget.productLink,
             ),
           ),
         );

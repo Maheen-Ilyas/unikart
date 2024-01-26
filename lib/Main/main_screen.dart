@@ -14,14 +14,15 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> {
   List<Product> amazonProducts = [];
-  
+
   @override
   void initState() {
     super.initState();
     fetchAmazonData(amazonCategory[0].values.first);
   }
 
-  Future<List<Product>> fetchAmazonData(String url, {int maxRetries = 3}) async {
+  Future<List<Product>> fetchAmazonData(String url,
+      {int maxRetries = 3}) async {
     int retryCount = 0;
 
     while (retryCount < maxRetries) {
@@ -69,13 +70,18 @@ class _MainState extends State<Main> {
       final imageElement =
           detail.querySelector('div.s-product-image-container img.s-image');
       final String image = imageElement?.attributes['src'] ?? '';
-
+      final String href = detail
+              .querySelector(
+                  'div.a-section.a-spacing-small.puis-padding-left-small.puis-padding-right-small > div.a-section.a-spacing-none.a-spacing-top-small.s-title-instructions-style > h2 > a')
+              ?.attributes['href'] ??
+          '';
       Product product = Product(
         brand: brand,
         name: name,
         price: price,
         image: image,
         source: 'Amazon',
+        href: href,
       );
       productList.add(product);
     }

@@ -4,6 +4,7 @@ class Product {
   final String price;
   final String image;
   final String source;
+  final String href;
 
   Product({
     required this.brand,
@@ -11,6 +12,7 @@ class Product {
     required this.price,
     required this.image,
     required this.source,
+    required this.href,
   });
 }
 
@@ -163,55 +165,5 @@ final List<Map<String, String>> jiomartCategory = [
   },
   {
     'Women\'s Clothing': 'https://www.jiomart.com/c/fashion/women/493',
-  },
-];
-
-final List<Map<String, String>> myntraCategory = [
-  {
-    'Appliances': 'https://www.myntra.com/appliances?rawQuery=Appliances',
-  },
-  {
-    'Beauty': 'https://www.myntra.com/beauty?rawQuery=beauty',
-  },
-  {
-    'Boy\'s Clothing':
-        'https://www.myntra.com/boys-clothing?rawQuery=boys%20clothing',
-  },
-  {
-    'Electronics': 'https://www.myntra.com/electronics?rawQuery=electronics',
-  },
-  {
-    'Furniture': 'https://www.myntra.com/furniture?rawQuery=Furniture',
-  },
-  {
-    'Girl\'s CLothing':
-        'https://www.myntra.com/girls-clothing?rawQuery=girls%20clothing',
-  },
-  {
-    'Grocery': 'https://www.myntra.com/grocery?rawQuery=grocery',
-  },
-  {
-    'Health & Personal Care':
-        'https://www.myntra.com/personal-care?rawQuery=personal%20care',
-  },
-  {
-    'Home & Kitchen': 'https://www.myntra.com/kitchen?rawQuery=kitchen',
-  },
-  {
-    'Men\'s Clothing':
-        'https://www.myntra.com/mens-clothing?rawQuery=mens%20clothing',
-  },
-  {
-    'Pet Supplies': 'https://www.myntra.com/pet?rawQuery=pet',
-  },
-  {
-    'Sports': 'https://www.myntra.com/sports?rawQuery=sports',
-  },
-  {
-    'Watches': 'https://www.myntra.com/watches?rawQuery=watches',
-  },
-  {
-    'Women\'s Clothing':
-        'https://www.myntra.com/womens-clothing?rawQuery=womens%20clothing',
   },
 ];

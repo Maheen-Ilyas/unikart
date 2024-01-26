@@ -77,6 +77,8 @@ class _ProductsState extends State<AmazonProducts> {
         'span > img',
       );
       final String image = imageElement?.attributes['src'] ?? '';
+      final String href =
+          detail.querySelector('h3 > a')?.attributes['href'] ?? '';
 
       Product product = Product(
         brand: brand,
@@ -84,6 +86,7 @@ class _ProductsState extends State<AmazonProducts> {
         price: price,
         image: image,
         source: 'Bigbasket',
+        href: href,
       );
       productList.add(product);
     }
@@ -111,7 +114,6 @@ class _ProductsState extends State<AmazonProducts> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            
             Padding(
               padding: const EdgeInsets.only(left: 16),
               child: Text(
@@ -138,6 +140,7 @@ class _ProductsState extends State<AmazonProducts> {
                         productPrice: product.price,
                         productImage: product.image,
                         productSource: product.source,
+                        productLink: product.href,
                       ),
                     );
                   },
@@ -177,16 +180,6 @@ class _ProductsState extends State<AmazonProducts> {
                   onPressed: () {},
                   child: Text(
                     2.toString(),
-                    style: GoogleFonts.outfit(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text(
-                    3.toString(),
                     style: GoogleFonts.outfit(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,

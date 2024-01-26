@@ -1,6 +1,8 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:developer' as dev show log;
 
 class ProductDetail extends StatefulWidget {
   final String productBrand;
@@ -8,6 +10,7 @@ class ProductDetail extends StatefulWidget {
   final String productPrice;
   final String productImage;
   final String productSource;
+  final String productLink;
   const ProductDetail({
     super.key,
     required this.productBrand,
@@ -15,6 +18,7 @@ class ProductDetail extends StatefulWidget {
     required this.productPrice,
     required this.productImage,
     required this.productSource,
+    required this.productLink,
   });
 
   @override
@@ -24,6 +28,7 @@ class ProductDetail extends StatefulWidget {
 class _ProductScreenState extends State<ProductDetail> {
   @override
   Widget build(BuildContext context) {
+    dev.log(widget.productLink.toString());
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -83,14 +88,19 @@ class _ProductScreenState extends State<ProductDetail> {
                       const Spacer(),
                       IconButton(
                         onPressed: () {},
-                        icon: const Icon(
+                        icon: Icon(
                           FluentIcons.flag_24_filled,
-                          color: Colors.red,
+                          color: Colors.red[800],
                         ),
                       ),
                       const Spacer(),
                       FilledButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          launchUrl(
+                            Uri.parse(widget.productLink),
+                            mode: LaunchMode.platformDefault,
+                          );
+                        },
                         child: Text(
                           "Buy on ${widget.productSource}",
                           style: GoogleFonts.outfit(
