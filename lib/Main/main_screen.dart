@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -95,20 +93,15 @@ class _MainState extends State<Main> {
               amazonProducts = extractedProducts;
             });
           }
-          print(extractedProducts);
           return extractedProducts;
         } else {
-          print('HTTP Request Failed - Status Code: ${response.statusCode}');
           throw Exception(
               'Failed to load data - Status Code: ${response.statusCode}');
         }
       } catch (e) {
-        print('Error: $e');
         if (retryCount < maxRetries - 1) {
-          print('Retrying...');
           retryCount++;
         } else {
-          print('Max retries reached. Giving up.');
           rethrow;
         }
       }
@@ -207,7 +200,7 @@ class _MainState extends State<Main> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => FirstProducts(
+                            builder: (context) => AmazonProducts(
                               name: categoryName,
                               index: index,
                               products: extractedProducts,
@@ -217,7 +210,7 @@ class _MainState extends State<Main> {
                       },
                     ).catchError(
                       (error) {
-                        print('Error: $error');
+                        throw Exception('Error: $error');
                       },
                     );
                   },

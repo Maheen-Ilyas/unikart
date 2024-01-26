@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:unikart/Products/class.dart';
 import 'package:unikart/Products/product_card.dart';
 
-class MyntraProducts extends StatefulWidget {
+class JiomartProducts extends StatefulWidget {
   final String name;
   final int index;
   final List<Product> products;
-  const MyntraProducts({
+  const JiomartProducts({
     super.key,
     required this.name,
     required this.index,
@@ -15,10 +15,10 @@ class MyntraProducts extends StatefulWidget {
   });
 
   @override
-  State<MyntraProducts> createState() => _MyntraProductsState();
+  State<JiomartProducts> createState() => _JiomartProductsState();
 }
 
-class _MyntraProductsState extends State<MyntraProducts> {
+class _JiomartProductsState extends State<JiomartProducts> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -85,7 +85,7 @@ class _MyntraProductsState extends State<MyntraProducts> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MyntraProducts(
+                        builder: (context) => JiomartProducts(
                           name: widget.name,
                           products: widget.products,
                           index: widget.index,

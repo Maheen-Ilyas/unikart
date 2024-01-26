@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:unikart/Products/class.dart';
 import 'package:unikart/Products/product_card.dart';
-import 'package:unikart/Products/myntra_products.dart';
+import 'package:unikart/Products/jiomart_products.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as html_parser;
 
@@ -22,59 +22,56 @@ class BigbasketProducts extends StatefulWidget {
 }
 
 class _ProductsState extends State<BigbasketProducts> {
-  List<Product> myntraProducts = [];
+  List<Product> jiomartProducts = [];
 
-  final List<Map<String, String>> myntraCategory = [
+  final List<Map<String, String>> jiomartCategory = [
     {
-      'Appliances': 'https://www.myntra.com/appliances?rawQuery=appliances',
+      'Appliances': 'https://www.jiomart.com/c/electronics/home-appliances/724',
     },
     {
-      'Beauty': 'https://www.myntra.com/beauty?rawQuery=beauty',
+      'Beauty': 'https://www.jiomart.com/c/beauty/5',
     },
     {
-      'Boy\'s Clothing':
-          'https://www.myntra.com/boys-clothing?rawQuery=boys%20clothing',
+      'Boy\'s Clothing': 'https://www.jiomart.com/c/fashion/boys/499',
     },
     {
-      'Electronics': 'https://www.myntra.com/electronics?rawQuery=electronics',
+      'Electronics': 'https://www.jiomart.com/c/electronics/4',
     },
     {
-      'Furniture': 'https://www.myntra.com/home-decor?rawQuery=home%20decor',
+      'Furniture': 'https://www.jiomart.com/c/homeandkitchen/home-decor/8722',
     },
     {
-      'Girl\'s CLothing':
-          'https://www.myntra.com/girls-clothing?rawQuery=girls%20clothing',
+      'Girl\'s CLothing': 'https://www.jiomart.com/c/fashion/girls/563',
     },
     {
-      'Grocery': 'https://www.myntra.com/grocery?rawQuery=grocery',
+      'Grocery': 'https://www.jiomart.com/c/groceries/2',
     },
     {
-      'Health & Personal Care': 'https://www.myntra.com/health?rawQuery=health',
+      'Health & Personal Care':
+          'https://www.jiomart.com/c/groceries/personal-care/91',
     },
     {
-      'Home & Kitchen': 'https://www.myntra.com/furniture?rawQuery=furniture',
+      'Home & Kitchen': 'https://www.jiomart.com/c/homeandkitchen/8582',
     },
     {
-      'Men\'s Clothing':
-          'https://www.myntra.com/mens-clothing?rawQuery=mens%20clothing',
+      'Men\'s Clothing': 'https://www.jiomart.com/c/fashion/men/496',
     },
     {
-      'Pet Supplies':
-          'https://www.myntra.com/pet-supplies?rawQuery=pet%20supplies',
+      'Pet Supplies': 'https://www.jiomart.com/c/groceries/pets/3346',
     },
     {
-      'Sports': 'https://www.myntra.com/sports?rawQuery=sports',
+      'Sports':
+          'https://www.jiomart.com/c/sportstoysluggage/sporting-goods-fitness-equipment/9279',
     },
     {
-      'Watches': 'https://www.myntra.com/watches?rawQuery=watches',
+      'Watches': 'https://www.jiomart.com/search/watches',
     },
     {
-      'Women\'s Clothing':
-          'https://www.myntra.com/womens-clothing?rawQuery=womens%20clothing',
+      'Women\'s Clothing': 'https://www.jiomart.com/c/fashion/women/493',
     },
   ];
 
-  Future<List<Product>> fetchMyntraData(String url,
+  Future<List<Product>> fetchJiomartData(String url,
       {int maxRetries = 3}) async {
     int retryCount = 0;
 
@@ -83,26 +80,21 @@ class _ProductsState extends State<BigbasketProducts> {
         final http.Response response = await http.get(Uri.parse(url));
 
         if (response.statusCode == 200) {
-          List<Product> extractedProducts = parseMyntraProducts(response.body);
-          print(extractedProducts);
+          List<Product> extractedProducts = parseJiomartProducts(response.body);
           if (mounted) {
             setState(() {
-              myntraProducts = extractedProducts;
+              jiomartProducts = extractedProducts;
             });
           }
           return extractedProducts;
         } else {
-          print('HTTP Request Failed - Status Code: ${response.statusCode}');
           throw Exception(
               'Failed to load data - Status Code: ${response.statusCode}');
         }
       } catch (e) {
-        print('Error: $e');
         if (retryCount < maxRetries - 1) {
-          print('Retrying...');
           retryCount++;
         } else {
-          print('Max retries reached. Giving up.');
           rethrow;
         }
       }
@@ -110,33 +102,36 @@ class _ProductsState extends State<BigbasketProducts> {
     return [];
   }
 
-  List<Product> parseMyntraProducts(String responseBody) {
+  List<Product> parseJiomartProducts(String responseBody) {
     List<Product> productList = [];
     final document = html_parser.parse(responseBody);
     final elements = document.querySelectorAll(
-      '#desktopSearchResults > div.search-searchProductsContainer.row-base > section > ul > li > a',
+      'div.plp-card-container',
     );
-
     for (var detail in elements) {
-      final brandElement = detail.querySelector('');
+      final brandElement = detail.querySelector('div.plp-card-details-wrapper > div > div.plp-card-details-tag > div');
       final String brand = brandElement?.text ?? '';
-      final String name = detail.querySelector('')?.text ?? '';
+      print(brand);
+      final String name = detail.querySelector('div.plp-card-details-wrapper > div > div.plp-card-details-name.line-clamp.jm-body-xs.jm-fc-primary-grey-80')?.text ?? '';
+      print(name);
       final String price = detail
               .querySelector(
-                '',
+                'div.plp-card-details-wrapper > div > div.plp-card-details-price-wrapper > div.plp-card-details-price > span.jm-heading-xxs.jm-mb-xxs',
               )
               ?.text ??
           '';
+      print(price);
       final imageElement = detail.querySelector(
-        '',
+        'div.plp-card-image img',
       );
       final String image = imageElement?.attributes['src'] ?? '';
+      print(image);
       Product product = Product(
         brand: brand,
         name: name,
         price: price,
         image: image,
-        source: 'Myntra',
+        source: 'Jiomart',
       );
       productList.add(product);
     }
@@ -217,15 +212,15 @@ class _ProductsState extends State<BigbasketProducts> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    fetchMyntraData(myntraCategory[widget.index].values.first)
+                    fetchJiomartData(jiomartCategory[widget.index].values.first)
                         .then(
                       (value) => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MyntraProducts(
+                          builder: (context) => JiomartProducts(
                             name: widget.name,
                             index: widget.index,
-                            products: myntraProducts,
+                            products: jiomartProducts,
                           ),
                         ),
                       ),

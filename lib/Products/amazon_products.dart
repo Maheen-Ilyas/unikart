@@ -6,11 +6,11 @@ import 'package:unikart/Products/bigbasket_products.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as html_parser;
 
-class FirstProducts extends StatefulWidget {
+class AmazonProducts extends StatefulWidget {
   final String name;
   final int index;
   final List<Product> products;
-  const FirstProducts({
+  const AmazonProducts({
     super.key,
     required this.name,
     required this.products,
@@ -18,10 +18,10 @@ class FirstProducts extends StatefulWidget {
   });
 
   @override
-  State<FirstProducts> createState() => _ProductsState();
+  State<AmazonProducts> createState() => _ProductsState();
 }
 
-class _ProductsState extends State<FirstProducts> {
+class _ProductsState extends State<AmazonProducts> {
   List<Product> bigBasketProducts = [];
 
   final List<Map<String, String>> bigBasketCategory = [
@@ -86,20 +86,15 @@ class _ProductsState extends State<FirstProducts> {
               bigBasketProducts = extractedProducts;
             });
           }
-          print(extractedProducts);
           return extractedProducts;
         } else {
-          print('HTTP Request Failed - Status Code: ${response.statusCode}');
           throw Exception(
               'Failed to load data - Status Code: ${response.statusCode}');
         }
       } catch (e) {
-        print('Error: $e');
         if (retryCount < maxRetries - 1) {
-          print('Retrying...');
           retryCount++;
         } else {
-          print('Max retries reached. Giving up.');
           rethrow;
         }
       }
@@ -110,6 +105,7 @@ class _ProductsState extends State<FirstProducts> {
   List<Product> parseBigbasketProducts(String responseBody) {
     List<Product> productList = [];
     final document = html_parser.parse(responseBody);
+    print(document);
     final elements = document.querySelectorAll(
       '#siteLayout > div.col-span-12.mt-3.mb-8 > div.grid.grid-flow-col.gap-x-6.relative.mt-5.pb-5.border-t.border-dashed.border-silverSurfer-400 > section > section > ul > li > div > div',
     );
