@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as html_parser;
 import 'package:unikart/Products/class.dart';
-import 'package:unikart/Products/products.dart';
+import 'package:unikart/Products/amazon_products.dart';
 
 class Main extends StatefulWidget {
   const Main({super.key});
@@ -15,7 +15,8 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
-  static final List<Map<String, String>> category = [
+  List<Product> amazonProducts = [];
+  final List<Map<String, String>> amazonCategory = [
     {
       'Appliances':
           'https://www.amazon.in/s?bbn=5122349031&rh=n%3A5122348031%2Cn%3A4951860031&dc&qid=1706030387&rnid=5122349031&ref=lp_5122349031_nr_n_1'
@@ -73,15 +74,14 @@ class _MainState extends State<Main> {
           'https://www.amazon.in/s?k=women+clothing&i=apparel&crid=NV135L5ZIDGR&sprefix=women+clothing%2Capparel%2C173&ref=nb_sb_noss_1'
     },
   ];
-  List<Product> products = [];
 
   @override
   void initState() {
     super.initState();
-    fetchData(category[0].values.first);
+    fetchAmazonData(amazonCategory[0].values.first);
   }
 
-  Future<List<Product>> fetchData(String url, {int maxRetries = 3}) async {
+  Future<List<Product>> fetchAmazonData(String url, {int maxRetries = 3}) async {
     int retryCount = 0;
 
     while (retryCount < maxRetries) {
@@ -89,10 +89,10 @@ class _MainState extends State<Main> {
         final http.Response response = await http.get(Uri.parse(url));
 
         if (response.statusCode == 200) {
-          List<Product> extractedProducts = parseProducts(response.body);
+          List<Product> extractedProducts = parseAmazonProducts(response.body);
           if (mounted) {
             setState(() {
-              products = extractedProducts;
+              amazonProducts = extractedProducts;
             });
           }
           print(extractedProducts);
@@ -116,7 +116,7 @@ class _MainState extends State<Main> {
     return [];
   }
 
-  List<Product> parseProducts(String responseBody) {
+  List<Product> parseAmazonProducts(String responseBody) {
     List<Product> productList = [];
     final document = html_parser.parse(responseBody);
     final elements = document.querySelectorAll('.a-spacing-base');
@@ -140,6 +140,7 @@ class _MainState extends State<Main> {
         name: name,
         price: price,
         image: image,
+        source: 'Amazon',
       );
       productList.add(product);
     }
@@ -195,19 +196,20 @@ class _MainState extends State<Main> {
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
               ),
-              itemCount: category.length,
+              itemCount: amazonCategory.length,
               itemBuilder: (context, index) {
-                final categoryName = category[index].keys.first;
-                final categoryUrl = category[index].values.first;
+                final categoryName = amazonCategory[index].keys.first;
+                final categoryUrl = amazonCategory[index].values.first;
                 return GestureDetector(
                   onTap: () {
-                    fetchData(categoryUrl).then(
+                    fetchAmazonData(categoryUrl).then(
                       (extractedProducts) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Products(
+                            builder: (context) => FirstProducts(
                               name: categoryName,
+                              index: index,
                               products: extractedProducts,
                             ),
                           ),

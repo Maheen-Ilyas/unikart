@@ -3,20 +3,22 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:unikart/Products/class.dart';
 import 'package:unikart/Products/product_card.dart';
 
-class Products extends StatefulWidget {
+class MyntraProducts extends StatefulWidget {
   final String name;
+  final int index;
   final List<Product> products;
-  const Products({
+  const MyntraProducts({
     super.key,
     required this.name,
+    required this.index,
     required this.products,
   });
 
   @override
-  State<Products> createState() => _ProductsState();
+  State<MyntraProducts> createState() => _MyntraProductsState();
 }
 
-class _ProductsState extends State<Products> {
+class _MyntraProductsState extends State<MyntraProducts> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -57,11 +59,59 @@ class _ProductsState extends State<Products> {
                         productName: product.name,
                         productPrice: product.price,
                         productImage: product.image,
+                        productSource: product.source,
                       ),
                     );
                   },
                 ),
               ),
+            ),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text(
+                    1.toString(),
+                    style: GoogleFonts.outfit(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                FilledButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MyntraProducts(
+                          name: widget.name,
+                          products: widget.products,
+                          index: widget.index,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    2.toString(),
+                    style: GoogleFonts.outfit(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text(
+                    3.toString(),
+                    style: GoogleFonts.outfit(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

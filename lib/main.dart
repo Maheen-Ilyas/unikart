@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: GoogleFonts.outfit().toString(),
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF80BCBD),
+          seedColor: const Color.fromARGB(255, 35, 157, 159),
         ),
         navigationBarTheme: NavigationBarThemeData(
           height: 80,

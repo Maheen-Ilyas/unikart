@@ -7,12 +7,14 @@ class ProductCard extends StatefulWidget {
   final String productName;
   final String productPrice;
   final String productImage;
+  final String productSource;
   const ProductCard({
     Key? key,
     required this.productBrand,
     required this.productName,
     required this.productPrice,
     required this.productImage,
+    required this.productSource,
   }) : super(key: key);
 
   @override
@@ -32,6 +34,7 @@ class _ProductCardState extends State<ProductCard> {
               productName: widget.productName,
               productPrice: widget.productPrice,
               productImage: widget.productImage,
+              productSource: widget.productSource,
             ),
           ),
         );
@@ -75,7 +78,14 @@ class _ProductCardState extends State<ProductCard> {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      const Spacer(),
+                      Text(
+                        widget.productSource,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.outfit(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
                       Text(
                         widget.productPrice,
                         style: GoogleFonts.outfit(

@@ -6,12 +6,14 @@ class ProductDetail extends StatefulWidget {
   final String productName;
   final String productPrice;
   final String productImage;
+  final String productSource;
   const ProductDetail({
     super.key,
     required this.productBrand,
     required this.productName,
     required this.productPrice,
     required this.productImage,
+    required this.productSource,
   });
 
   @override
@@ -80,7 +82,7 @@ class _ProductScreenState extends State<ProductDetail> {
                       FilledButton(
                         onPressed: () {},
                         child: Text(
-                          "Buy on Amazon",
+                          "Buy on ${widget.productSource}",
                           style: GoogleFonts.outfit(
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
