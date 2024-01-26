@@ -109,23 +109,24 @@ class _ProductsState extends State<BigbasketProducts> {
       'div.plp-card-container',
     );
     for (var detail in elements) {
-      final brandElement = detail.querySelector('div.plp-card-details-wrapper > div > div.plp-card-details-tag > div');
+      final brandElement = detail.querySelector(
+          'div.plp-card-details-wrapper > div > div.plp-card-details-tag > div');
       final String brand = brandElement?.text ?? '';
-      print(brand);
-      final String name = detail.querySelector('div.plp-card-details-wrapper > div > div.plp-card-details-name.line-clamp.jm-body-xs.jm-fc-primary-grey-80')?.text ?? '';
-      print(name);
+      final String name = detail
+              .querySelector(
+                  'div.plp-card-details-wrapper > div > div.plp-card-details-name.line-clamp.jm-body-xs.jm-fc-primary-grey-80')
+              ?.text ??
+          '';
       final String price = detail
               .querySelector(
                 'div.plp-card-details-wrapper > div > div.plp-card-details-price-wrapper > div.plp-card-details-price > span.jm-heading-xxs.jm-mb-xxs',
               )
               ?.text ??
           '';
-      print(price);
       final imageElement = detail.querySelector(
         'div.plp-card-image img',
       );
       final String image = imageElement?.attributes['src'] ?? '';
-      print(image);
       Product product = Product(
         brand: brand,
         name: name,
